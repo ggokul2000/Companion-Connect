@@ -6,7 +6,7 @@ from decimal import Decimal  # DynamoDB requires Decimal for numbers
 import time
 from botocore.exceptions import ClientError  # Import ClientError for handling DynamoDB exceptions
 from datetime import date
-import streamlit.components.v1 as components
+import os
 
 #contributed by gowthami
 def add_bg():
@@ -37,9 +37,23 @@ def inject_custom_styles():
 
 inject_custom_styles()
 
+# Retrieve AWS credentials and region from environment variables securely
+aws_region = os.getenv('AWS_REGION')
+aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
+aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+
 
 # Initialize DynamoDB resource
-dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
+if aws_access_key_id and aws_secret_access_key and aws_region:
+    dynamodb = boto3.resource(
+        'dynamodb',
+        region_name=aws_region,
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key
+    )
+else:
+    raise ValueError("AWS credentials or region are not set in environment variables.")
+
 table = dynamodb.Table('animals')
 
 # Fetch data from DynamoDB
