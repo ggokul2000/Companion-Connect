@@ -37,10 +37,10 @@ def inject_custom_styles():
 
 inject_custom_styles()
 
-# Retrieve AWS credentials and region from environment variables securely
-aws_region = os.getenv('AWS_REGION')
-aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
-aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+# Retrieve AWS credentials and region from Streamlit secrets
+aws_region = st.secrets["default"]["AWS_REGION"]
+aws_access_key_id = st.secrets["default"]["AWS_ACCESS_KEY_ID"]
+aws_secret_access_key = st.secrets["default"]["AWS_SECRET_ACCESS_KEY"]
 
 
 # Initialize DynamoDB resource
