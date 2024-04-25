@@ -7,6 +7,8 @@ import time
 from botocore.exceptions import ClientError  # Import ClientError for handling DynamoDB exceptions
 from datetime import date
 import os
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 #contributed by gowthami
 def add_bg():
