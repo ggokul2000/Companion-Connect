@@ -355,36 +355,36 @@ elif action == 'Read':
     elif not search_clicked:
         st.dataframe(df)
 
-# Count plot for Species
-st.subheader('Count of Animals by Species')
-species_count = df['Species'].value_counts()
-species_count_filtered = species_count[species_count > 0]
-plt.figure(figsize=(10, 6))
-# Create a list of colors, one for each species
-colors = sns.color_palette("hsv", len(species_count_filtered))
-# Plot using the colors list
-sns.barplot(x=species_count_filtered.index, y=species_count_filtered.values, palette=colors)
-plt.xticks(rotation=45)
-plt.xlabel('Species')
-plt.ylabel('Count')
-plt.title('Count of Animals by Species')
-plt.tight_layout()
-# Pass the figure explicitly to st.pyplot()
-st.pyplot(plt.gcf())
+    # Count plot for Species
+    st.subheader('Count of Animals by Species')
+    species_count = df['Species'].value_counts()
+    species_count_filtered = species_count[species_count > 0]
+    plt.figure(figsize=(10, 6))
+    # Create a list of colors, one for each species
+    colors = sns.color_palette("hsv", len(species_count_filtered))
+    # Plot using the colors list
+    sns.barplot(x=species_count_filtered.index, y=species_count_filtered.values, palette=colors)
+    plt.xticks(rotation=45)
+    plt.xlabel('Species')
+    plt.ylabel('Count')
+    plt.title('Count of Animals by Species')
+    plt.tight_layout()
+    # Pass the figure explicitly to st.pyplot()
+    st.pyplot(plt.gcf())
 
 
 
-# Time series plot for intake over time
-st.subheader('Intake Over Time')
-df['Intake Date'] = pd.to_datetime(df['Intake Date'])
-intake_over_time = df.set_index('Intake Date').resample('M').size()
-intake_over_time = intake_over_time[intake_over_time > 0]
-plt.figure(figsize=(12, 6))
-intake_over_time.plot(label="Number of Intakes")
-plt.xlabel('Year')
-plt.ylabel('Number of Intakes')
-plt.title('Animal Intakes Over Time')
-st.pyplot(plt.gcf())
+    # Time series plot for intake over time
+    st.subheader('Intake Over Time')
+    df['Intake Date'] = pd.to_datetime(df['Intake Date'])
+    intake_over_time = df.set_index('Intake Date').resample('M').size()
+    intake_over_time = intake_over_time[intake_over_time > 0]
+    plt.figure(figsize=(12, 6))
+    intake_over_time.plot(label="Number of Intakes")
+    plt.xlabel('Year')
+    plt.ylabel('Number of Intakes')
+    plt.title('Animal Intakes Over Time')
+    st.pyplot(plt.gcf())
 
 
         
