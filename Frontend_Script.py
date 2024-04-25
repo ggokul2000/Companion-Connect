@@ -360,12 +360,18 @@ st.subheader('Count of Animals by Species')
 species_count = df['Species'].value_counts()
 species_count_filtered = species_count[species_count > 0]
 plt.figure(figsize=(10, 6))
-sns.barplot(x=species_count_filtered.index, y=species_count_filtered.values,hue=species_count_filtered.index, label="Species Count")
+# Create a list of colors, one for each species
+colors = sns.color_palette("hsv", len(species_count_filtered))
+# Plot using the colors list
+sns.barplot(x=species_count_filtered.index, y=species_count_filtered.values, palette=colors)
 plt.xticks(rotation=45)
 plt.xlabel('Species')
 plt.ylabel('Count')
+plt.title('Count of Animals by Species')
 plt.tight_layout()
+# Pass the figure explicitly to st.pyplot()
 st.pyplot(plt.gcf())
+
 
 
 # Time series plot for intake over time
