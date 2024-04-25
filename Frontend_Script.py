@@ -359,7 +359,7 @@ elif action == 'Read':
     st.subheader('Count of Animals by Species')
     species_count = df['Species'].value_counts()
     species_count_filtered = species_count[species_count > 0]
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(14, 6))
     # Create a list of colors, one for each species
     colors = sns.color_palette("hsv", len(species_count_filtered))
     # Plot using the colors list
